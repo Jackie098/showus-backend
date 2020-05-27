@@ -6,10 +6,12 @@
   "author": "Jackie098 <carlosmiranda19122@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "dev:debug": "nodemon --inspect src/server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1"
   },
   "devDependencies": {
