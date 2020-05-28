@@ -21,4 +21,8 @@ export default class File extends Model {
 
     return this;
   }
+
+  static associate(models) {
+    this.belongsTo(models.Company, { foreignKey: 'company_id', as: 'company' });
+  }
 }
