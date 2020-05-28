@@ -5,6 +5,27 @@ import { Op } from 'sequelize';
 import Company from '../models/Company';
 
 class CompanyController {
+  async index(req, res) {
+    const { page } = req.query;
+
+    const companies = await Company.findAll({
+      limit: 6,
+      offset: (page - 1) * 6,
+      attributes: [
+        'id',
+        'name',
+        'description',
+        'whatsapp',
+        'instagram',
+        'email',
+        'createdAt',
+        'updatedAt',
+      ],
+    });
+
+    return res.json(companies);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),

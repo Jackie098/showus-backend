@@ -7,6 +7,7 @@ const routes = new Router();
 /**
  * To manipulate Company
  */
+routes.get('/company', CompanyComtroller.index);
 routes.post('/company', CompanyComtroller.store);
 
 export default routes;
