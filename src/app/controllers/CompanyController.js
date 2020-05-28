@@ -1,5 +1,7 @@
 import * as Yup from 'yup';
 
+import { Op } from 'sequelize';
+
 import Company from '../models/Company';
 
 class CompanyController {
@@ -17,7 +19,13 @@ class CompanyController {
     }
 
     const companyExists = await Company.findOne({
-      where: { whatsapp: req.body.whatsapp },
+      where: {
+        [Op.or]: [
+          { whatsapp: req.body.whatsapp },
+          { instagram: req.body.instagram },
+          { email: req.body.email },
+        ],
+      },
     });
 
     if (companyExists) {
