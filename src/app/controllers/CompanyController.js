@@ -57,6 +57,20 @@ class CompanyController {
 
     return res.json({ id, name, whatsapp });
   }
+
+  async delete(req, res) {
+    const company = await Company.findByPk(req.params.id);
+
+    if (!company) {
+      return res.status(400).json({ error: 'Company does not exists' });
+    }
+
+    await company.destroy();
+
+    return res.json({
+      message: `Successful operation, ${company.name} deleted`,
+    });
+  }
 }
 
 export default new CompanyController();
