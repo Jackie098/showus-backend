@@ -58,6 +58,81 @@ class CompanyController {
     return res.json({ id, name, whatsapp });
   }
 
+  async update(req, res) {
+    const schema = Yup.object().shape({
+      name: Yup.string(),
+      description: Yup.string(),
+      whatsapp: Yup.string(),
+      instagram: Yup.string(),
+      email: Yup.string().email(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Validation fails' });
+    }
+
+    const company = await Company.findByPk(req.params.id);
+
+    if (!company) {
+      return res.status(400).json({ error: 'Company does not exists' });
+    }
+
+    /**
+     * case whatsapp already exists
+     */
+    if (req.body.whatsapp) {
+      const whatsappExists = await Company.findOne({
+        where: { whatsapp: req.body.whatsapp },
+      });
+
+      if (whatsappExists) {
+        return res.status(400).json({ error: 'Whatsapp already registered' });
+      }
+    }
+
+    /**
+     * case instagram already exists
+     */
+    if (req.body.instagram) {
+      const instagramExists = await Company.findOne({
+        where: { instagram: req.body.instagram },
+      });
+
+      if (instagramExists) {
+        return res.status(400).json({ error: 'Instagram already registered' });
+      }
+    }
+
+    /**
+     * case email already exists
+     */
+    if (req.body.email) {
+      const emailExists = await Company.findOne({
+        where: { email: req.body.email },
+      });
+
+      if (emailExists) {
+        return res.status(400).json({ error: 'Email already registered' });
+      }
+    }
+
+    /**
+     * otherwise, normal flow
+     */
+
+    const { id, name, whatsapp, instagram, email } = await company.update(
+      req.body
+    );
+
+    return res.json({
+      id,
+      name,
+      whatsapp,
+      instagram,
+      email,
+    });
+  }
+
   async delete(req, res) {
     const company = await Company.findByPk(req.params.id);
 

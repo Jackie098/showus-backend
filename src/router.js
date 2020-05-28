@@ -9,6 +9,7 @@ const routes = new Router();
  */
 routes.get('/company', CompanyComtroller.index);
 routes.post('/company', CompanyComtroller.store);
+routes.put('/company/:id', CompanyComtroller.update);
 routes.delete('/company/:id', CompanyComtroller.delete);
 
 export default routes;
