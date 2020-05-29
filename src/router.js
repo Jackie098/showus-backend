@@ -6,6 +6,7 @@ import CompanyComtroller from './app/controllers/CompanyController';
 import FileController from './app/controllers/FileController';
 
 import checkIdCompany from './app/middlewares/checkIdcompany';
+import maxAmount from './app/middlewares/maxAmount';
 
 const routes = new Router();
 
@@ -25,6 +26,7 @@ routes.delete('/company/:id', CompanyComtroller.delete);
 routes.post(
   '/file/:id',
   checkIdCompany,
+  maxAmount,
   upload.single('file'),
   FileController.store
 );
