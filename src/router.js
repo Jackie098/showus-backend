@@ -3,7 +3,9 @@ import multer from 'multer';
 import multerConfig from './config/multer';
 
 import CompanyComtroller from './app/controllers/CompanyController';
-import FileController from './app/controllers/FileController.js';
+import FileController from './app/controllers/FileController';
+
+import checkIdCompany from './app/middlewares/checkIdcompany';
 
 const routes = new Router();
 
@@ -20,6 +22,11 @@ routes.delete('/company/:id', CompanyComtroller.delete);
 /**
  * To manipule FIles
  */
-routes.post('/file', FileController.store);
+routes.post(
+  '/file/:id',
+  checkIdCompany,
+  upload.single('file'),
+  FileController.store
+);
 
 export default routes;
