@@ -30,5 +30,6 @@ routes.post(
   upload.single('file'),
   FileController.store
 );
+routes.delete('/file/:id', FileController.delete);
 
 export default routes;

@@ -15,6 +15,18 @@ class FileController {
 
     return res.json(file);
   }
+
+  async delete(req, res) {
+    const file = await File.findByPk(req.params.id);
+
+    if (!file) {
+      return res.status(400).json({ error: 'File does not exists' });
+    }
+
+    await file.destroy();
+
+    return res.send();
+  }
 }
 
 export default new FileController();
