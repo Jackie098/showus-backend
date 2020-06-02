@@ -4,6 +4,7 @@ import multerConfig from './config/multer';
 
 import CompanyComtroller from './app/controllers/CompanyController';
 import FileController from './app/controllers/FileController';
+import ProductTypeController from './app/controllers/ProductTypeController';
 
 import checkIdCompany from './app/middlewares/checkIdcompany';
 import maxAmount from './app/middlewares/maxAmount';
@@ -21,7 +22,7 @@ routes.put('/company/:id', CompanyComtroller.update);
 routes.delete('/company/:id', CompanyComtroller.delete);
 
 /**
- * To manipule FIles
+ * To manipule Files
  */
 routes.post(
   '/file/:id',
@@ -31,5 +32,13 @@ routes.post(
   FileController.store
 );
 routes.delete('/file/:id', FileController.delete);
+
+/**
+ * To manipule Product Types
+ */
+routes.get('/product-type', ProductTypeController.index);
+routes.post('/product-type', ProductTypeController.store);
+routes.put('/product-type/:id', ProductTypeController.update);
+routes.delete('/product-type/:id', ProductTypeController.delete);
 
 export default routes;
