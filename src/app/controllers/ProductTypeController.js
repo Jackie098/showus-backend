@@ -16,7 +16,7 @@ class ProductTypeController {
 
   async store(req, res) {
     const schema = Yup.object().shape({
-      name: Yup.string().required(),
+      name: Yup.string().lowercase(req.body.name).required(),
     });
 
     if (!schema.isValid(req.body)) {
