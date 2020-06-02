@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
 import ProductType from '../models/ProductType';
+import Product from '../models/Product';
 
 class ProductTypeController {
   async index(req, res) {
@@ -71,6 +72,16 @@ class ProductTypeController {
 
     if (!productType) {
       return res.status(400).json({ error: 'ProductType does not exists' });
+    }
+
+    const product = await Product.findOne({
+      where: { type_id: productType.id },
+    });
+
+    if (product) {
+      return res
+        .status(400)
+        .json({ error: 'There are products with this type yet' });
     }
 
     await productType.destroy();
