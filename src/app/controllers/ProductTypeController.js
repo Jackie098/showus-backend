@@ -67,7 +67,15 @@ class ProductTypeController {
   }
 
   async delete(req, res) {
-    return res.json();
+    const productType = await ProductType.findByPk(req.params.id);
+
+    if (!productType) {
+      return res.status(400).json({ error: 'ProductType does not exists' });
+    }
+
+    await productType.destroy();
+
+    return res.status(204).json();
   }
 }
 
