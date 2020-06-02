@@ -39,7 +39,31 @@ class ProductTypeController {
   }
 
   async update(req, res) {
-    return res.json();
+    const schema = Yup.object().shape({
+      name: Yup.string().required(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Validation fails' });
+    }
+
+    const productType = await ProductType.findByPk(req.params.id);
+
+    if (!productType) {
+      return res.status(400).json({ error: 'ProductType doesn not exists' });
+    }
+
+    const nameExists = await ProductType.findOne({
+      where: { name: req.body.name },
+    });
+
+    if (nameExists) {
+      return res.status(400).json({ error: 'Product already registered' });
+    }
+
+    await productType.update(req.body);
+
+    return res.json(productType);
   }
 
   async delete(req, res) {
