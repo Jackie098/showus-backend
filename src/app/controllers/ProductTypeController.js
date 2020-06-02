@@ -16,7 +16,7 @@ class ProductTypeController {
 
   async store(req, res) {
     const schema = Yup.object().shape({
-      name: Yup.string().lowercase(req.body.name).required(),
+      name: Yup.string().required(),
     });
 
     if (!schema.isValid(req.body)) {
@@ -61,9 +61,9 @@ class ProductTypeController {
       return res.status(400).json({ error: 'Product already registered' });
     }
 
-    await productType.update(req.body);
+    const { id, name } = await productType.update(req.body);
 
-    return res.json(productType);
+    return res.json({ id, name });
   }
 
   async delete(req, res) {
