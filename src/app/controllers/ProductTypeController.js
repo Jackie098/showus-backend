@@ -4,7 +4,14 @@ import ProductType from '../models/ProductType';
 
 class ProductTypeController {
   async index(req, res) {
-    return res.json();
+    const { page } = req.query;
+
+    const productTypes = await ProductType.findAll({
+      limit: 10,
+      offset: (page - 1) * 10,
+    });
+
+    return res.json(productTypes);
   }
 
   async store(req, res) {
