@@ -19,5 +19,6 @@ export default class Product extends Model {
 
   static associate(models) {
     this.belongsTo(models.ProductType, { foreignKey: 'type_id', as: 'type' });
+    this.belongsTo(models.Size, { foreignKey: 'size_id', as: 'size' });
   }
 }
