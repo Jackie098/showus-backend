@@ -6,6 +6,7 @@ import CompanyComtroller from './app/controllers/CompanyController';
 import FileController from './app/controllers/FileController';
 import ProductTypeController from './app/controllers/ProductTypeController';
 import ProductController from './app/controllers/ProductController';
+import SizeController from './app/controllers/SizeController';
 
 import checkIdCompany from './app/middlewares/checkIdcompany';
 import maxAmount from './app/middlewares/maxAmount';
@@ -49,5 +50,11 @@ routes.get('/product', ProductController.index);
 routes.post('/product', ProductController.store);
 routes.put('/product/:id', ProductController.update);
 routes.delete('/product/:id', ProductController.delete);
+
+/**
+ * To manupule Size
+ */
+routes.post('/size', SizeController.store);
+routes.delete('size/:id', SizeController.delete);
 
 export default routes;
