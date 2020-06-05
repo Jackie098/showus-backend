@@ -55,6 +55,6 @@ routes.delete('/product/:id', ProductController.delete);
  * To manupule Size
  */
 routes.post('/size', SizeController.store);
-routes.delete('size/:id', SizeController.delete);
+routes.delete('/size/:id', SizeController.delete);
 
 export default routes;

@@ -14,6 +14,20 @@ class SizeController {
       return res.status(400).json({ error: 'Validation fails' });
     }
 
+    const nameExists = await Size.findOne({ where: { name: req.body.name } });
+
+    if (nameExists) {
+      return res.status(400).json({ error: 'Name already exists' });
+    }
+
+    const initialsExists = await Size.findOne({
+      where: { initials: req.body.initials.toUpperCase() },
+    });
+
+    if (initialsExists) {
+      return res.status(400).json({ error: 'Initials already exists' });
+    }
+
     const size = await Size.create(req.body);
 
     return res.json(size);
@@ -22,9 +36,13 @@ class SizeController {
   async delete(req, res) {
     const size = await Size.findByPk(req.params.id);
 
+    if (!size) {
+      return res.status(400).json({ error: 'Size does not found' });
+    }
+
     await size.destroy();
 
-    return res.status(240).json();
+    return res.status(204).json();
   }
 }
 
