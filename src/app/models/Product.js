@@ -6,7 +6,6 @@ export default class Product extends Model {
       {
         name: Sequelize.STRING,
         description: Sequelize.TEXT,
-        size: Sequelize.STRING,
         price: Sequelize.DECIMAL,
       },
       {
