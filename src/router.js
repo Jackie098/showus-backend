@@ -7,6 +7,7 @@ import FileController from './app/controllers/FileController';
 import ProductTypeController from './app/controllers/ProductTypeController';
 import ProductController from './app/controllers/ProductController';
 import SizeController from './app/controllers/SizeController';
+import MenuController from './app/controllers/MenuController';
 
 import checkIdCompany from './app/middlewares/checkIdcompany';
 import maxAmount from './app/middlewares/maxAmount';
@@ -56,5 +57,11 @@ routes.delete('/product/:id', ProductController.delete);
  */
 routes.post('/size', SizeController.store);
 routes.delete('/size/:id', SizeController.delete);
+
+/**
+ * To manipule Menu
+ */
+routes.put('/menu/:id', MenuController.update);
+routes.delete('/menu/:id', MenuController.delete);
 
 export default routes;
