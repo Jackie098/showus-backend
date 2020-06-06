@@ -14,6 +14,13 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
       },
+      size_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'sizes', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+        allowNull: false,
+      },
       name: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -21,10 +28,6 @@ module.exports = {
       description: {
         type: Sequelize.TEXT,
         allowNull: false,
-      },
-      size: {
-        type: Sequelize.STRING,
-        allowNull: true,
       },
       price: {
         type: Sequelize.DECIMAL,
