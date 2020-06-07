@@ -18,6 +18,11 @@ module.exports = {
         onDelete: 'CASCADE',
         allowNull: false,
       },
+      wallpaper: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
       path: {
         type: Sequelize.STRING,
         allowNull: false,

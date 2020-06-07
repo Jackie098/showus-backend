@@ -11,6 +11,7 @@ export default class File extends Model {
         name: Sequelize.STRING,
         path: Sequelize.STRING,
         size: Sequelize.BIGINT,
+        wallpaper: Sequelize.BOOLEAN,
         url: {
           type: Sequelize.VIRTUAL,
           get() {
