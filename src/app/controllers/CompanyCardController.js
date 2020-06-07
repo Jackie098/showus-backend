@@ -9,7 +9,10 @@ class CompanyCardController {
       return res.status(200).json();
     }
 
-    const files = await File.findAll();
+    const files = await File.findAll({
+      where: { wallpaper: true },
+      attributes: ['url', 'name', 'path', 'size', 'wallpaper', 'company_id'],
+    });
 
     const cards = companies.map((company) => {
       // onde company_id(files) = id (company) adiciona um novo item no vetor de cards

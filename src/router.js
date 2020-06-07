@@ -9,6 +9,7 @@ import ProductController from './app/controllers/ProductController';
 import SizeController from './app/controllers/SizeController';
 import MenuController from './app/controllers/MenuController';
 import CompanyCardController from './app/controllers/CompanyCardController';
+import CompanyDetailsController from './app/controllers/CompanyDetailsController';
 
 import checkIdCompany from './app/middlewares/checkIdcompany';
 import maxAmount from './app/middlewares/maxAmount';
@@ -69,5 +70,10 @@ routes.delete('/menu/:id', MenuController.delete);
  * To manipule Company Cards
  */
 routes.get('/card', CompanyCardController.index);
+
+/**
+ * To manipule Company Details
+ */
+routes.get('/detail', CompanyDetailsController.index);
 
 export default routes;
