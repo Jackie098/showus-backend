@@ -10,6 +10,7 @@ import SizeController from './app/controllers/SizeController';
 import MenuController from './app/controllers/MenuController';
 import CompanyCardController from './app/controllers/CompanyCardController';
 import CompanyDetailsController from './app/controllers/CompanyDetailsController';
+import FileWallpaperController from './app/controllers/FileWallpaperController';
 
 import checkIdCompany from './app/middlewares/checkIdcompany';
 import maxAmount from './app/middlewares/maxAmount';
@@ -76,4 +77,8 @@ routes.get('/card', CompanyCardController.index);
  */
 routes.get('/detail', CompanyDetailsController.index);
 
+/**
+ * To manupule File Wallpaper
+ */
+routes.put('/wallpaper/:id', FileWallpaperController.update);
 export default routes;
