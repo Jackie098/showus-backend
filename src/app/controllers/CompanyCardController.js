@@ -15,11 +15,7 @@ class CompanyCardController {
     });
 
     const cards = companies.map((company) => {
-      // onde company_id(files) = id (company) adiciona um novo item no vetor de cards
-
-      const filesCompany = files.filter(
-        (file) => file.company_id === company.id
-      );
+      const filesCompany = files.find((file) => file.company_id === company.id);
 
       return {
         company,
