@@ -75,7 +75,7 @@ routes.get('/card', CompanyCardController.index);
 /**
  * To manipule Company Details
  */
-routes.get('/detail', CompanyDetailsController.index);
+routes.get('/detail/:id', CompanyDetailsController.index);
 
 /**
  * To manupule File Wallpaper

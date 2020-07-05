@@ -5,11 +5,11 @@ import Product from '../models/Product';
 
 class ProductTypeController {
   async index(req, res) {
-    const { page } = req.query;
+    // const { page } = req.query;
 
     const productTypes = await ProductType.findAll({
-      limit: 10,
-      offset: (page - 1) * 10,
+      // limit: 10,
+      // offset: (page - 1) * 10,
     });
 
     return res.json(productTypes);

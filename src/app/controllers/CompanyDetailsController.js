@@ -7,7 +7,7 @@ import Size from '../models/Size';
 
 class CompanyDetailsController {
   async index(req, res) {
-    const company = await Company.findByPk(req.body.id, {
+    const company = await Company.findByPk(req.params.id, {
       attributes: [
         'id',
         'name',
