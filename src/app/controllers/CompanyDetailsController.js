@@ -35,7 +35,7 @@ class CompanyDetailsController {
         {
           model: Product,
           as: 'product',
-          attributes: ['name', 'description', 'price'],
+          attributes: ['id', 'name', 'description', 'price'],
           include: [
             {
               model: ProductType,
