@@ -26,6 +26,8 @@ class CompanyDetailsController {
 
     const filesCompany = files.filter((file) => file.company_id === company.id);
 
+    const allTypes = await ProductType.findAll();
+
     const menu = await Menu.findAll({
       where: { company_id: company.id },
       attributes: [],
@@ -50,7 +52,23 @@ class CompanyDetailsController {
       ],
     });
 
-    const details = { company, filesCompany, menu };
+
+    var typesInMenu = [''];
+    var found;
+
+    typesInMenu = allTypes.filter(type => {
+      found = menu.find(itemMenu => itemMenu.product.type.name === type.name);
+
+      if(!found){
+        return false;
+      }
+
+      return true;
+    })
+
+    // menu.forEach(item => console.log(item.type));
+
+    const details = { company, filesCompany, menu, typesInMenu };
 
     return res.json(details);
   }
