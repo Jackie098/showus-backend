@@ -11,6 +11,7 @@ import MenuController from './app/controllers/MenuController';
 import CompanyCardController from './app/controllers/CompanyCardController';
 import CompanyDetailsController from './app/controllers/CompanyDetailsController';
 import FileWallpaperController from './app/controllers/FileWallpaperController';
+import FileLogoController from './app/controllers/FileLogoController';
 
 import checkIdCompany from './app/middlewares/checkIdcompany';
 import maxAmount from './app/middlewares/maxAmount';
@@ -81,4 +82,9 @@ routes.get('/detail/:id', CompanyDetailsController.index);
  * To manupule File Wallpaper
  */
 routes.put('/wallpaper/:id', FileWallpaperController.update);
+
+/**
+ * TO manipue File Logo
+ */
+routes.put('/logo/:id', FileLogoController.update);
 export default routes;

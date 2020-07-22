@@ -9,17 +9,24 @@ class CompanyCardController {
       return res.status(200).json();
     }
 
-    const files = await File.findAll({
+    const filesWallpaper = await File.findAll({
       where: { wallpaper: true },
       attributes: ['url', 'name', 'path', 'size', 'wallpaper', 'company_id'],
     });
 
+    const filesLogo = await File.findAll({
+      where: { logo: true },
+      attributes: ['url', 'name', 'path', 'size', 'logo', 'company_id'],
+    });
+
     const cards = companies.map((company) => {
-      const filesCompany = files.find((file) => file.company_id === company.id);
+      const fileWallpaper = filesWallpaper.find((file) => file.company_id === company.id);
+      const fileLogo = filesLogo.find((file) => file.company_id === company.id);
 
       return {
         company,
-        filesCompany,
+        fileWallpaper,
+        fileLogo
       };
     });
 
