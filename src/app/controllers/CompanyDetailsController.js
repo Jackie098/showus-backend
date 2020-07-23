@@ -24,7 +24,26 @@ class CompanyDetailsController {
 
     const files = await File.findAll();
 
-    const filesCompany = files.filter((file) => file.company_id === company.id);
+    const filesCompany = files.filter((file) => {
+      if(file.company_id === company.id) {
+        if(!file.logo) {
+          return true;
+        }
+      }
+
+      return false;
+      }
+    );
+
+    const logoCompany = files.filter((file) => {
+      if(file.company_id === company.id) {
+        if(file.logo) {
+          return true;
+        }
+      }
+
+      return false;
+    });
 
     const allTypes = await ProductType.findAll();
 
@@ -66,9 +85,7 @@ class CompanyDetailsController {
       return true;
     })
 
-    // menu.forEach(item => console.log(item.type));
-
-    const details = { company, filesCompany, menu, typesInMenu };
+    const details = { company, filesCompany, logoCompany, menu, typesInMenu };
 
     return res.json(details);
   }
