@@ -12,6 +12,7 @@ import CompanyCardController from './app/controllers/CompanyCardController';
 import CompanyDetailsController from './app/controllers/CompanyDetailsController';
 import FileWallpaperController from './app/controllers/FileWallpaperController';
 import FileLogoController from './app/controllers/FileLogoController';
+import SorterController from './app/controllers/SorterController';
 
 import checkIdCompany from './app/middlewares/checkIdcompany';
 import maxAmount from './app/middlewares/maxAmount';
@@ -67,6 +68,11 @@ routes.delete('/size/:id', SizeController.delete);
  */
 routes.put('/menu/:id', MenuController.update);
 routes.delete('/menu/:id', MenuController.delete);
+
+/**
+ * To manipule Sorter
+ */
+routes.get('/sorter', SorterController.index);
 
 /**
  * To manipule Company Cards
