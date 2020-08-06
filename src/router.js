@@ -77,7 +77,7 @@ routes.get('/sorter', SorterController.index);
 /**
  * To manipule Company Cards
  */
-routes.get('/card', CompanyCardController.index);
+routes.get('/card/:search?/:order?', CompanyCardController.index);
 
 /**
  * To manipule Company Details

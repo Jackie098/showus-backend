@@ -1,9 +1,33 @@
 import Company from '../models/Company';
 import File from '../models/File';
 
+import {Op} from 'sequelize';
+
 class CompanyCardController {
   async index(req, res) {
-    const companies = await Company.findAll();
+    const { search, order } = req.query;
+
+    if(search=="")
+      const companies = await Company.findAll();
+    // }else
+    // if(search || order){
+    //   if(search){
+    //     const companies = await Company.findAll({
+    //       where: {
+    //         name: {
+    //           [Op.like]: `%${search}%`,
+    //         },
+    //       },
+    //     });
+    //   } else {
+    //     const companies = await Company.findAll({
+    //       where: {
+    //       },
+    //     });
+    //   }
+    // }
+    //   const companies = await Company.findAll();
+    // }
 
     if (!companies) {
       return res.status(200).json();
