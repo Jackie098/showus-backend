@@ -7,7 +7,7 @@ class CompanyCardController {
   async index(req, res) {
     const { search, order } = req.query;
 
-    if(search=="")
+    // if(search=='')
       const companies = await Company.findAll();
     // }else
     // if(search || order){
@@ -15,7 +15,7 @@ class CompanyCardController {
     //     const companies = await Company.findAll({
     //       where: {
     //         name: {
-    //           [Op.like]: `%${search}%`,
+    //           [Op.like]: `%${String(search)}%`,
     //         },
     //       },
     //     });
