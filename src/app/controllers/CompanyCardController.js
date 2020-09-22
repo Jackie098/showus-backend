@@ -13,7 +13,7 @@ class CompanyCardController {
     // if(search)
       const companies = await Company.findAll({
         where: {
-          name: { [Op.like]: `%${search}%` },
+          name: { [Op.iLike]: `%${search}%` },
         }
       })
     // else
