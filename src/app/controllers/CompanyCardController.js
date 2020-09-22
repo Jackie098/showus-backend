@@ -7,8 +7,17 @@ class CompanyCardController {
   async index(req, res) {
     const { search, order } = req.query;
 
-    // if(search=='')
-      const companies = await Company.findAll();
+    console.log("++++++" +search);
+    // console.log("++++++" +order);
+
+    // if(search)
+      const companies = await Company.findAll({
+        where: {
+          name: { [Op.like]: `%${search}%` },
+        }
+      })
+    // else
+      // const companies = await Company.findAll();
     // }else
     // if(search || order){
     //   if(search){
@@ -29,9 +38,9 @@ class CompanyCardController {
     //   const companies = await Company.findAll();
     // }
 
-    if (!companies) {
-      return res.status(200).json();
-    }
+    // if (!companies) {
+    //   return res.status(200).json();
+    // }
 
     const filesWallpaper = await File.findAll({
       where: { wallpaper: true },
