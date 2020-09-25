@@ -7,40 +7,38 @@ class CompanyCardController {
   async index(req, res) {
     const { search, order } = req.query;
 
-    console.log("++++++" +search);
+    // console.log("++++++" +search);
     // console.log("++++++" +order);
 
-    // if(search)
-      const companies = await Company.findAll({
-        where: {
-          name: { [Op.iLike]: `%${search}%` },
-        }
-      })
-    // else
-      // const companies = await Company.findAll();
-    // }else
-    // if(search || order){
-    //   if(search){
-    //     const companies = await Company.findAll({
-    //       where: {
-    //         name: {
-    //           [Op.like]: `%${String(search)}%`,
-    //         },
-    //       },
-    //     });
-    //   } else {
-    //     const companies = await Company.findAll({
-    //       where: {
-    //       },
-    //     });
-    //   }
-    // }
-    //   const companies = await Company.findAll();
-    // }
+    var companies;
+    switch(parseInt(order)) {
+      case 1 :
+         companies = await Company.findAll({
+          where: {
+            name: { [Op.iLike]: `%${search}%` },
+          },
+          order: [['createdAt', 'DESC']],
+        });
+          break;
 
-    // if (!companies) {
-    //   return res.status(200).json();
-    // }
+      case 2 :
+        companies = await Company.findAll({
+          where: {
+            name: { [Op.iLike]: `%${search}%` },
+          },
+          order: [['name', 'ASC']],
+        });
+          break;
+
+      default:
+         companies = await Company.findAll({
+          where: {
+            name: { [Op.iLike]: `%${search}%` },
+          }
+        });
+    }
+
+    // console.log(companies);
 
     const filesWallpaper = await File.findAll({
       where: { wallpaper: true },
