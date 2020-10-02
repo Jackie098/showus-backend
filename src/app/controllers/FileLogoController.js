@@ -8,14 +8,6 @@ class FileLogoController {
       return res.status(400).json({ error: 'File doest not exists' });
     }
 
-    const logo = await File.findOne({
-      where: { company_id: fileExists.company_id, logo: true },
-    });
-
-    if (logo) {
-      await logo.update({ logo: false });
-    }
-
     const wallpaper = await File.findOne({
       where: { id: fileExists.id, wallpaper: true }
     })
@@ -23,6 +15,14 @@ class FileLogoController {
     if(wallpaper) {
       return res.status(400).json(
         { error: 'The same file cannot be a logo and a wallpaper'});
+    }
+
+    const logo = await File.findOne({
+      where: { company_id: fileExists.company_id, logo: true },
+    });
+
+    if (logo) {
+      await logo.update({ logo: false });
     }
 
     const fileUpdated = await fileExists.update({ logo: true });
