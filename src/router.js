@@ -12,6 +12,7 @@ import CompanyCardController from './app/controllers/CompanyCardController';
 import CompanyDetailsController from './app/controllers/CompanyDetailsController';
 import FileWallpaperController from './app/controllers/FileWallpaperController';
 import FileLogoController from './app/controllers/FileLogoController';
+import FileMenuController from './app/controllers/FileMenuController';
 import SorterController from './app/controllers/SorterController';
 
 import checkIdCompany from './app/middlewares/checkIdcompany';
@@ -90,7 +91,13 @@ routes.get('/detail/:id', CompanyDetailsController.index);
 routes.put('/wallpaper/:id', FileWallpaperController.update);
 
 /**
- * TO manipue File Logo
+ * To manipue File Logo
  */
 routes.put('/logo/:id', FileLogoController.update);
+
+/**
+ * To manupule File Menu
+ */
+routes.put('/file/menu/:id', FileMenuController.update);
+
 export default routes;

@@ -13,6 +13,7 @@ export default class File extends Model {
         size: Sequelize.BIGINT,
         wallpaper: Sequelize.BOOLEAN,
         logo: Sequelize.BOOLEAN,
+        menu: Sequelize.BOOLEAN,
         url: {
           type: Sequelize.VIRTUAL,
           get() {

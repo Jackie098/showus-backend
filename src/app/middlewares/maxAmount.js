@@ -10,7 +10,7 @@ export default async (req, res, next) => {
     },
   });
 
-  if (totalImages.count > 4) {
+  if (totalImages.count > 10) {
     return res
       .status(400)
       .json({ error: 'This company cannot have more files' });
