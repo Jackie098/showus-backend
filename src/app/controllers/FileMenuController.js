@@ -33,7 +33,7 @@ class FileMenuController {
     }
 
     //Then the file can be a menu
-    const fileUpdated = await fileExists.update({ menu:true })
+    const fileUpdated = await fileExists.update({ menu: true })
 
     return res.json(fileUpdated);
   }
