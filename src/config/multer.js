@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import multer from 'multer';
 import crypto from 'crypto';
 import path, { extname, resolve } from 'path';
@@ -23,7 +24,8 @@ export default {
   dest: path.resolve(__dirname, '..', '..', 'tmp', 'uploads'),
   storage: storageType[process.env.STORAGE_TYPE],
   limits: {
-    fileSize: 2.5 * 1024 * 1024,
+    //2.5
+    fileSize: process.env.LIMIT_MEGA * 1024 * 1024,
   },
   fileFilter: (req, file, callback) => {
     const allowedMimes = ['image/jpeg', 'image/pjpeg', 'image/png'];
